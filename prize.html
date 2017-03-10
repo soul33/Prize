@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>抽奖</title>
+    <style>
+        input{
+            width: 100px;
+            height: 50px;
+        }
+        #div_inp{
+            width: 220px;
+            position: absolute;
+            left: 50%;
+            margin-left: -110px;
+            top: 10px;
+        }
+        #imgs{
+            display: block;
+            margin: 80px auto;         
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var start = document.getElementById('start');
+            var stop = document.getElementById('stop');
+            var imgs = document.getElementById('imgs');
+            var timer;
+            var arr = ['img/p0.jpg','img/p1.jpg','img/p2.jpg','img/p3.jpg','img/p4.jpg','img/p5.jpg','img/p6.jpg','img/p7.jpg','img/p8.jpg'];
+            start.onclick = function(){
+                clearInterval(timer);
+                timer = setInterval(function(){
+                    var num = Math.floor(Math.random()*(arr.length-1+1)+0);
+                    imgs.setAttribute('src',arr[num]);
+                },100);
+            }
+            stop.onclick = function(){
+                clearInterval(timer);
+                //谢谢惠顾概率高的方法,90%都是谢谢
+                var n = Math.random()*10;
+                if(n<9){
+                    imgs.setAttribute('src','img/p0.jpg');
+                }
+            }
+
+            
+            
+        }
+    </script>
+</head>
+<body>
+    <div id="div_inp">
+        <input type="button" id="start" value="开始抽奖">
+        <input type="button" id="stop" value="停止抽奖">
+    </div>
+    <img id="imgs" src="img/p0.jpg"/>
+         
+</body>
+</html>
